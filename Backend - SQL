@@ -1,0 +1,23 @@
+Workout:
+
+CREATE TABLE categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE workouts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    category_id INTEGER,
+    FOREIGN KEY(category_id) REFERENCES categories(id)
+);
+
+CREATE TABLE workout_entries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    workout_id INTEGER,
+    date DATE NOT NULL,
+    weight REAL,
+    reps INTEGER,
+    sets INTEGER,
+    FOREIGN KEY(workout_id) REFERENCES workouts(id)
+);
