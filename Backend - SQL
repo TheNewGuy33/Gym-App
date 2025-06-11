@@ -1,23 +1,43 @@
-Workout:
-
-CREATE TABLE categories (
+CREATE TABLE Wategories (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL UNIQUE
 );
 
+-- Table: Workouts (e.g., Bench Press, Incline Bench)
 CREATE TABLE workouts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    category_id INTEGER,
+    category_id INTEGER NOT NULL,
     FOREIGN KEY(category_id) REFERENCES categories(id)
 );
 
+-- Table: workout_entries (tracks each workout session)
 CREATE TABLE workout_entries (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    workout_id INTEGER,
+    workout_id INTEGER NOT NULL,
     date DATE NOT NULL,
     weight REAL,
     reps INTEGER,
     sets INTEGER,
     FOREIGN KEY(workout_id) REFERENCES workouts(id)
 );
+
+
+
+
+
+
+
+
+INSERT INTO categories (name) VALUES ('Chest'), ('Legs'), ('Shoulders');
+
+-- Insert workouts
+INSERT INTO workouts (name, category_id) VALUES 
+('Bench Press', 1),
+('Incline Bench', 1),
+('Squats', 2),
+('Shoulder Press', 3);
+
+-- Insert workout entries
+INSERT INTO workout_entries (workout_id, date, weight, reps, sets) VALUES
+(1, '2025-06-10', 165
