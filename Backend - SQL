@@ -1,16 +1,16 @@
 
 CREATE TABLE Categories (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL UNIQUE
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL UNIQUE
 );
 
 
 -- Table: Workouts (e.g., Bench Press, Incline Bench)
 
-CREATE TABLE workouts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    category_id INTEGER NOT NULL,
+CREATE TABLE Workouts (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Category_ID INTEGER NOT NULL,
     FOREIGN KEY(category_id) REFERENCES categories(id)
 );
 
@@ -18,13 +18,13 @@ CREATE TABLE workouts (
 
 -- Table: workout_entries (tracks each workout session)
 
-CREATE TABLE workout_entries (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    workout_id INTEGER NOT NULL,
-    date DATE NOT NULL,
-    weight REAL,
-    reps INTEGER,
-    sets INTEGER,
+CREATE TABLE Workout_Entries (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Workout_ID INTEGER NOT NULL,
+    Date DATE NOT NULL,
+    Weight REAL,
+    Reps INTEGER,
+    Sets INTEGER,
     FOREIGN KEY(workout_id) REFERENCES workouts(id)
 );
 
