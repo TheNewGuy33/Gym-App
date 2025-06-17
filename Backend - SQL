@@ -18,7 +18,7 @@ CREATE TABLE Workouts (
 
 -- Table: workout_entries (tracks each workout session)
 
-CREATE TABLE Workout_Entries (
+CREATE TABLE Workout_Track (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     Workout_ID INTEGER NOT NULL,
     Date DATE NOT NULL,
