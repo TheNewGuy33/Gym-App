@@ -4,6 +4,7 @@ CREATE TABLE Categories (
     name TEXT NOT NULL UNIQUE
 );
 
+
 -- Table: Workouts (e.g., Bench Press, Incline Bench)
 
 CREATE TABLE workouts (
