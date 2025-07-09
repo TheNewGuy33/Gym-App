@@ -8,9 +8,6 @@ CREATE TABLE Categories (
 
 
 
-
-
-
 -- Table: Workouts (e.g., Bench Press, Incline Bench)
 
 CREATE TABLE Workouts (
