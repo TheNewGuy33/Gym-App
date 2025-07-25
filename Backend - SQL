@@ -34,8 +34,6 @@ CREATE TABLE Workout_Track (
 
 
 
-
-
 Create Table Workout(
     ID INTEGER PRIMARY KEY AUTOINCREMENT AS Workout_ID,
     Description NOT NULL,
