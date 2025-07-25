@@ -47,7 +47,6 @@ Create Table Workout_Group(
 
 
 
-
 INSERT INTO categories (name) VALUES ('Chest'), ('Legs'), ('Shoulders');
 
 -- Insert workouts
