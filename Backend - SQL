@@ -19,7 +19,6 @@ CREATE TABLE Workouts (
 
 
 
-
 -- Table: workout_entries (tracks each workout session)
 
 CREATE TABLE Workout_Track (
