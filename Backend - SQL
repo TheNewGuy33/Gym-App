@@ -1,5 +1,6 @@
 -- Table: categories (e.g., Chest, Legs)
 
+
 CREATE TABLE Categories (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     Name TEXT NOT NULL UNIQUE
