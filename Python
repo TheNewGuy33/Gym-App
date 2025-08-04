@@ -1,0 +1,96 @@
+import sqlite3
+from datetime import datetime
+
+# Connect to database
+conn = sqlite3.connect("gym_tracker.db")
+cursor = conn.cursor()
+
+# Create table
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS workouts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user TEXT NOT NULL,
+        exercise TEXT NOT NULL,
+        weight REAL NOT NULL,
+        reps INTEGER NOT NULL,
+        sets INTEGER NOT NULL,
+        date TEXT NOT NULL
+    )
+''')
+conn.commit()
+
+def log_workout():
+    user = input("Enter your name: ")
+    exercise = input("Exercise name: ")
+    weight = float(input("Weight (lbs/kg): "))
+    reps = int(input("Reps: "))
+    sets = int(input("Sets: "))
+    date = input("Date (YYYY-MM-DD) or leave blank for today: ")
+    if not date:
+        date = datetime.now().strftime("%Y-%m-%d")
+
+    cursor.execute('''
+        INSERT INTO workouts (user, exercise, weight, reps, sets, date)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ''', (user, exercise, weight, reps, sets, date))
+    conn.commit()
+    print("✅ Workout logged successfully.\n")
+
+def view_progress():
+    user = input("Enter your name: ")
+    exercise = input("Enter exercise to view progress: ")
+
+    cursor.execute('''
+        SELECT date, weight, reps, sets FROM workouts
+        WHERE user = ? AND exercise = ?
+        ORDER BY date ASC
+    ''', (user, exercise))
+    rows = cursor.fetchall()
+
+    if rows:
+        print(f"\n📈 Progress for {exercise}:\n")
+        for row in rows:
+            print(f"{row[0]} - {row[1]} lbs/kg x {row[2]} reps x {row[3]} sets")
+    else:
+        print("⚠️ No data found for this exercise.\n")
+
+def view_personal_record():
+    user = input("Enter your name: ")
+    exercise = input("Exercise name: ")
+    
+    cursor.execute('''
+        SELECT MAX(weight) FROM workouts
+        WHERE user = ? AND exercise = ?
+    ''', (user, exercise))
+    record = cursor.fetchone()
+    
+    if record and record[0]:
+        print(f"🏅 Personal Record for {exercise}: {record[0]} lbs/kg")
+    else:
+        print("⚠️ No record found.")
+
+def main():
+    while True:
+        print("\n--- Gym Tracker Menu ---")
+        print("1. Log workout")
+        print("2. View exercise progress")
+        print("3. View personal record")
+        print("4. Exit")
+
+        choice = input("Choose an option: ")
+        if choice == "1":
+            log_workout()
+        elif choice == "2":
+            view_progress()
+        elif choice == "3":
+            view_personal_record()
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid option. Try again.")
+
+    conn.close()
+
+if __name__ == "__main__":
+    main()
