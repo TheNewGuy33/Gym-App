@@ -8,6 +8,7 @@ CREATE TABLE Categories (
 
 
 
+
 -- Table: Workouts (e.g., Bench Press, Incline Bench)
 
 CREATE TABLE Workouts (
@@ -16,6 +17,7 @@ CREATE TABLE Workouts (
     Category_ID INTEGER NOT NULL,
     FOREIGN KEY(category_id) REFERENCES categories(id)
 );
+
 
 
 
@@ -30,6 +32,7 @@ CREATE TABLE Workout_Track (
     Sets INTEGER,
     FOREIGN KEY(workout_id) REFERENCES workouts(id)
 );
+
 
 
 
